@@ -2,6 +2,7 @@ package com.rrdev.mvvmkotlin.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.rrdev.mvvmkotlin.data.repositories.UserRepository
 
 class AuthViewModel : ViewModel() {
     var email: String? = null
@@ -15,6 +16,7 @@ class AuthViewModel : ViewModel() {
             authListener?.onFailure("invalid username and password")
             return
         }
-        authListener?.onSucces()
+        val loginResponse = UserRepository().userLogin(email!!,password!!)
+        authListener?.onSucces(loginResponse)
     }
 }
