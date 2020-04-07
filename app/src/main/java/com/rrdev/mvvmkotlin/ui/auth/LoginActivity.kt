@@ -9,6 +9,7 @@ import com.rrdev.mvvmkotlin.R
 import com.rrdev.mvvmkotlin.databinding.ActivityLoginBinding
 import com.rrdev.mvvmkotlin.util.hide
 import com.rrdev.mvvmkotlin.util.show
+import com.rrdev.mvvmkotlin.util.snackbar
 import com.rrdev.mvvmkotlin.util.toast
 import com.rrdev.mvvmtrial.data.db.entities.User
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,16 +27,15 @@ class LoginActivity : AppCompatActivity(),AuthListener {
 
     override fun onStarted() {
         progres_bar.show()
-        toast("Login Started")
     }
 
     override fun onSucces(user: User) {
         progres_bar.hide()
-        toast("${user.name} is logged in")
+        root_layout.snackbar("${user.name} is logged in")
     }
 
     override fun onFailure(message: String) {
         progres_bar.hide()
-        toast(message)
+        root_layout.snackbar(message)
     }
 }
