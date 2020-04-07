@@ -4,7 +4,7 @@ import com.rrdev.mvvmtrial.data.network.responses.AuthResponse
 import retrofit2.Response
 
 
-//Response dgn coroutine
+//Response dgn coroutinee
 class UserRepository {
     suspend fun userLogin(email: String, password: String ): Response <AuthResponse> {
         return MyApi().userLogin(email,password)
