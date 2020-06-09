@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorite.FavoriteFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFavorite"
+        tools:listitem="@layout/item_favorite"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="favorite" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

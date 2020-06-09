@@ -4,11 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rrdev.mvvmtrial.data.db.AppDatabase
-import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
+import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.db.entities.Booking
-import com.rrdev.roombookingmvvm.data.db.entities.DetailRooms
-import com.rrdev.roombookingmvvm.data.db.entities.Rooms
-import com.rrdev.roombookingmvvm.data.db.entities.User
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.SafeApiRequest
 import com.rrdev.roombookingmvvm.util.Coroutines
@@ -39,7 +36,7 @@ class BookingRepository(
     private suspend fun fetchBooking(){
         try {
             if (isFetchNeeded()){
-                val response = apiRequest { api.getBooking("0285") }
+                val response = apiRequest { api.getBooking(prefManager.spNim) }
                 booking.postValue(response.booking)
             }
         }catch (e: NoInternetException){

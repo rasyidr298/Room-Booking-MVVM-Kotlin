@@ -5,7 +5,7 @@ import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.util.lazyDeferred
 
 class HomeViewModel(
-    repository: RoomRepository
+    private val repository: RoomRepository
 ) : ViewModel() {
 
     val room by lazyDeferred{

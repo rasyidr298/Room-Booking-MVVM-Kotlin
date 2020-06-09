@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.rrdev.mvvmtrial.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.R
+import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.entities.User
 import com.rrdev.roombookingmvvm.data.network.MyApi
@@ -54,6 +55,7 @@ class LoginActivity : AppCompatActivity(),AuthListener {
 
     override fun onSucces(user: User) {
         progres_bar_login.hide()
+        prefManager.spNim = user.nim
         root_layout_login.snackbar("${user.nim} is logged in")
     }
 

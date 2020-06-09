@@ -1,4 +1,4 @@
-package com.rrdev.mvvmtrial.data.db
+package com.rrdev.roombookingmvvm.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

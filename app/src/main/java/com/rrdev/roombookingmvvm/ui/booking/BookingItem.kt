@@ -2,9 +2,7 @@ package com.rrdev.roombookingmvvm.ui.booking
 
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.data.db.entities.Booking
-import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.databinding.ItemBookingBinding
-import com.rrdev.roombookingmvvm.databinding.ItemHomeBinding
 import com.xwray.groupie.databinding.BindableItem
 
 class BookingItem (

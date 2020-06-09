@@ -6,5 +6,5 @@ import com.rrdev.roombookingmvvm.data.db.entities.Booking
 
 data class BookingResponse(
     @SerializedName("data")
-    val booking: List<Booking>
+    val booking: List<Booking>?
 )

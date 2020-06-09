@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rrdev.mvvmtrial.data.db.AppDatabase
-import com.rrdev.mvvmtrial.data.db.RoomDao
 import com.rrdev.roombookingmvvm.data.db.entities.DetailRooms
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.network.MyApi
@@ -55,7 +54,7 @@ class RoomRepository(
         }
     }
 
-    suspend fun getDetailRoomById(
+    suspend fun getDetailRoomByName(
         namaRoom: String
     ):LiveData<DetailRooms>{
         return withContext(Dispatchers.IO){
@@ -63,4 +62,13 @@ class RoomRepository(
             db.getRoomDao().getDetailRoom(namaRoom)
         }
     }
+//
+//    suspend fun getRoomById(
+//        idRoom: Int
+//    ): LiveData<RoomsFavorite>{
+//        return withContext(Dispatchers.IO){
+//            fetchRoom()
+//            db.getRoomDao().getFavoriteRoom(idRoom)
+//        }
+//    }
 }

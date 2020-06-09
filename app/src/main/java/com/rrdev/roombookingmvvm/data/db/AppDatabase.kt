@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.rrdev.roombookingmvvm.data.db.dao.BookingDao
+import com.rrdev.roombookingmvvm.data.db.dao.RoomDao
+import com.rrdev.roombookingmvvm.data.db.dao.UserDao
 import com.rrdev.roombookingmvvm.data.db.entities.Booking
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.db.entities.User
@@ -14,9 +17,9 @@ import com.rrdev.roombookingmvvm.data.db.entities.User
 )
 
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getUserDao():UserDao
-    abstract fun getRoomDao():RoomDao
-    abstract fun getBookingDao():BookingDao
+    abstract fun getUserDao(): UserDao
+    abstract fun getRoomDao(): RoomDao
+    abstract fun getBookingDao(): BookingDao
 
     companion object{
         @Volatile

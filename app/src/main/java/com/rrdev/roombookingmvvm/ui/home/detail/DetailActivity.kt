@@ -1,6 +1,8 @@
 package com.rrdev.roombookingmvvm.ui.home.detail
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -11,6 +13,8 @@ import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
 import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.databinding.ActivityDetailBinding
+import com.rrdev.roombookingmvvm.ui.auth.SignUpActivity
+import com.rrdev.roombookingmvvm.ui.bookingRoom.BookingRoomActivity
 import com.rrdev.roombookingmvvm.util.Coroutines
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -18,17 +22,13 @@ import kotlinx.android.synthetic.main.activity_detail.*
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val safeArgs = DetailActivityArgs.fromBundle(intent?.extras!!).namaRoom
-      //  val idRoom = safeArgs!!.idRoom
-
-       // val username = MainActivityArgs.fromBundle(intent?.extras).usernam
+        val safeArgsString = DetailActivityArgs.fromBundle(intent?.extras!!).namaRoom
 
         val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
         val api = MyApi(networkConnectionInterceptor)
         val db = AppDatabase(this)
         val repository = RoomRepository(api, db)
-        val factory = DetailViewModelFactory(safeArgs, repository)
+        val factory = DetailViewModelFactory(safeArgsString, repository)
 
         super.onCreate(savedInstanceState)
         val binding: ActivityDetailBinding =
@@ -42,5 +42,6 @@ class DetailActivity : AppCompatActivity() {
                 tvNamaRoomDetailAct.text = (it.namaRoom)
             })
         }
+
     }
 }

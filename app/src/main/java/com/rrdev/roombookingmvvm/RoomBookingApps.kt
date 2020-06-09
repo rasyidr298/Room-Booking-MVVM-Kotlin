@@ -2,6 +2,7 @@ package com.rrdev.roombookingmvvm
 
 import android.app.Application
 import com.rrdev.mvvmtrial.data.db.AppDatabase
+import com.rrdev.roombookingmvvm.data.SharedPreferences.PrefManager
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 import com.rrdev.roombookingmvvm.ui.auth.AuthViewModelFactory
@@ -30,12 +31,12 @@ class RoomBookingApps : Application(), KodeinAware {
     companion object {
         @get:Synchronized
         lateinit var instance: RoomBookingApps
-        //lateinit var prefManager: PrefManager
+        lateinit var prefManager: PrefManager
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        //prefManager = PrefManager(this)
+        prefManager = PrefManager(this)
     }
 }
