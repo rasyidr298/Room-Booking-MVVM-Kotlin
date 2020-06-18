@@ -6,5 +6,6 @@ import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 class ProfileViewModel(
     repository: UserRepository
 ) : ViewModel() {
+
     val user = repository.getUser()
 }

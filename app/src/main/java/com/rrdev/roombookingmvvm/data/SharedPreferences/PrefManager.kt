@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 
 private const val PREFS_NAME = "booking_apps"
 private const val NIM_USER = "key_nim"
+private const val NAMA_USER = "key_nama"
+private const val NAMA_ROOM = "key_nama_room"
 
 class PrefManager(context: Context) {
 
@@ -24,6 +26,20 @@ class PrefManager(context: Context) {
         get() = sp.getString(NIM_USER, "")
         set(value) {
             spe.putString(NIM_USER, value)
+            spe.commit()
+        }
+
+    var spNama: String?
+        get() = sp.getString(NAMA_USER, "")
+        set(value) {
+            spe.putString(NAMA_USER, value)
+            spe.commit()
+        }
+
+    var spNamaRoom: String?
+        get() = sp.getString(NAMA_ROOM, "")
+        set(value) {
+            spe.putString(NAMA_ROOM, value)
             spe.commit()
         }
 }

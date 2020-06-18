@@ -1,25 +1,22 @@
-package com.rrdev.mvvmtrial.data.db
+package com.rrdev.roombookingmvvm.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rrdev.roombookingmvvm.data.db.dao.BookingDao
 import com.rrdev.roombookingmvvm.data.db.dao.RoomDao
 import com.rrdev.roombookingmvvm.data.db.dao.UserDao
-import com.rrdev.roombookingmvvm.data.db.entities.Booking
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.db.entities.User
 
 @Database(
-    entities = [User::class, Rooms::class, Booking::class],
+    entities = [User::class, Rooms::class],
     version = 1
 )
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getUserDao(): UserDao
     abstract fun getRoomDao(): RoomDao
-    abstract fun getBookingDao(): BookingDao
 
     companion object{
         @Volatile

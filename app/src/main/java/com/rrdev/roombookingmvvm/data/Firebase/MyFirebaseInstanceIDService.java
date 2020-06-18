@@ -8,7 +8,6 @@ import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "MyFirebaseIIDService";
-
     @Override
     public void onTokenRefresh() {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();

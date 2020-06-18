@@ -11,17 +11,20 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">#EEEEEE</item>
     </style>
 
-    <style name="BotNav" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">10sp</item>
-    </style>
 
-    <style name="BotNav.Active" parent="@style/TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">11sp</item>
-    </style>
+    //Custom Bottom Nav
+<!--    <style name="BotNav" parent="@style/TextAppearance.AppCompat.Caption">-->
+<!--        <item name="android:textSize">10sp</item>-->
+<!--    </style>-->
+
+<!--    <style name="BotNav.Active" parent="@style/TextAppearance.AppCompat.Caption">-->
+<!--        <item name="android:textSize">11sp</item>-->
+<!--    </style>-->
 
 </resources>

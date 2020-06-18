@@ -3,7 +3,7 @@ package com.rrdev.roombookingmvvm.data.repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.rrdev.mvvmtrial.data.db.AppDatabase
+import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.DetailRooms
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.network.MyApi
@@ -21,26 +21,26 @@ class RoomRepository(
     private val room = MutableLiveData<List<Rooms>>()
 
     init {
-        room.observeForever{
+        room.observeForever {
             saveRoom(it)
         }
     }
 
-    suspend fun getRoom(): LiveData<List<Rooms>>{
-        return withContext(Dispatchers.IO){
+    suspend fun getRoom(): LiveData<List<Rooms>> {
+        return withContext(Dispatchers.IO) {
             fetchRoom()
             db.getRoomDao().getRoom()
         }
     }
 
-    private suspend fun fetchRoom(){
+    private suspend fun fetchRoom() {
         try {
-            if (isFetchNeeded()){
+            if (isFetchNeeded()) {
                 val response = apiRequest { api.getRoom() }
                 room.postValue(response.rooms)
             }
-        }catch (e: NoInternetException){
-            Log.e("Connectivty","No INTERNET CONNECTION")
+        } catch (e: NoInternetException) {
+            Log.e("Connectivty", "No INTERNET CONNECTION")
         }
     }
 
@@ -48,7 +48,7 @@ class RoomRepository(
         return true
     }
 
-    private fun saveRoom(rooms: List<Rooms>){
+    private fun saveRoom(rooms: List<Rooms>) {
         Coroutines.io {
             db.getRoomDao().saveAllRoom(rooms)
         }
@@ -56,19 +56,12 @@ class RoomRepository(
 
     suspend fun getDetailRoomByName(
         namaRoom: String
-    ):LiveData<DetailRooms>{
-        return withContext(Dispatchers.IO){
+    ): LiveData<DetailRooms> {
+        return withContext(Dispatchers.IO) {
             fetchRoom()
             db.getRoomDao().getDetailRoom(namaRoom)
         }
     }
-//
-//    suspend fun getRoomById(
-//        idRoom: Int
-//    ): LiveData<RoomsFavorite>{
-//        return withContext(Dispatchers.IO){
-//            fetchRoom()
-//            db.getRoomDao().getFavoriteRoom(idRoom)
-//        }
-//    }
+
+    fun getUser() = db.getUserDao().getUser()
 }

@@ -1,19 +1,10 @@
 package com.rrdev.roombookingmvvm
 
 import android.app.Application
-import com.rrdev.mvvmtrial.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.SharedPreferences.PrefManager
-import com.rrdev.roombookingmvvm.data.network.MyApi
-import com.rrdev.roombookingmvvm.data.repositories.UserRepository
-import com.rrdev.roombookingmvvm.ui.auth.AuthViewModelFactory
-import com.rrdev.roombookingmvvm.ui.profile.ProfileViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.provider
-import org.kodein.di.generic.singleton
 
 class RoomBookingApps : Application(), KodeinAware {
 

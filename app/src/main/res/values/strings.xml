@@ -39,4 +39,11 @@
     <string name="booking">Booking</string>
     <string name="favorite">Favorite</string>
     <string name="profile">Profile</string>
+
+
+    <string name="titleStart">jam mulai</string>
+    <string name="titleEnd">jam selesai</string>
+    <string name="selected_time_format">%1$s:%2$s</string>
+    <string name="time_prefix">&gt;&gt;</string>
+    <string name="time_suffix">&lt;&lt;</string>
 </resources>

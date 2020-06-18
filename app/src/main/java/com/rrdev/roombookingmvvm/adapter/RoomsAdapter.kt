@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import kotlinx.android.synthetic.main.item_home.view.*
@@ -43,7 +44,7 @@ class RoomsAdapter: RecyclerView.Adapter<RoomsAdapter.RoomViewHolder>() {
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
         val room = differ.currentList[position]
         holder.itemView.apply {
-           // Glide.with(this).load(room.deskripsi).into(ivRoomHome)
+            Glide.with(this).load(room.deskripsi).into(ivRoomHome)
             tvNamaRoomHome.text = room.namaRoom
             tvKapasitasRoomHome.text = room.kapasitas.toString()
             setOnClickListener {

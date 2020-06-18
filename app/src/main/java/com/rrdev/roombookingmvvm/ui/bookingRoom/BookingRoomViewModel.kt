@@ -2,17 +2,15 @@ package com.rrdev.roombookingmvvm.ui.bookingRoom
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.repositories.BookingRoomRepository
 import com.rrdev.roombookingmvvm.util.ApiException
 import com.rrdev.roombookingmvvm.util.Coroutines
+import com.rrdev.roombookingmvvm.util.NoInternetException
 
 class BookingRoomViewModel(
     private val repository: BookingRoomRepository
 ) : ViewModel() {
-    var idBooking: String? = ""
-    var nimBooking: String? = null
-    var namaPembooking: String? = null
-    var namaRuangBooking: String?= null
     var tanggal: String? = null
     var jamMulai: String? = null
     var jamSelesai: String? = null
@@ -22,18 +20,17 @@ class BookingRoomViewModel(
 
     fun onBookingButtonClick(view: View){
         bookingRoomListener?.onStarted()
-        if ((nimBooking.isNullOrEmpty() ||
-                namaPembooking.isNullOrEmpty() || namaRuangBooking.isNullOrEmpty() ||
-                tanggal.isNullOrEmpty() || jamMulai.isNullOrEmpty() ||
-                jamSelesai.isNullOrEmpty() || keterangan.isNullOrEmpty() )){
+        //validasi fieldkosong
+        if ((tanggal.isNullOrEmpty() || jamMulai.isNullOrEmpty() || jamSelesai.isNullOrEmpty() || keterangan.isNullOrEmpty() )){
             bookingRoomListener?.onFailure("harus terisi semuaa")
             return
         }
 
+        //push booking
         Coroutines.main {
             try {
                 val roomBookingResponse = repository.bookingRoom(
-                    idBooking!!,nimBooking!!,namaPembooking!!,namaRuangBooking!!,tanggal!!,jamMulai!!,jamSelesai!!,keterangan!!)
+                    "",prefManager.spNim!!,prefManager.spNama!!,prefManager.spNamaRoom!!,tanggal!!,jamMulai!!,jamSelesai!!,keterangan!!)
                 roomBookingResponse.status?.let {
                     bookingRoomListener?.onSucces(roomBookingResponse.message!!)
                     return@main
@@ -41,8 +38,11 @@ class BookingRoomViewModel(
                 bookingRoomListener?.onFailure(roomBookingResponse.message!!)
             }catch (e: ApiException){
                 bookingRoomListener?.onFailure(e.message!!)
+            }catch (e: NoInternetException) {
+                bookingRoomListener?.onFailure(e.message!!)
             }
         }
-
     }
+
+    val detailRoom = repository.getDetail()
 }

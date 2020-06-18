@@ -11,4 +11,6 @@ class HomeViewModel(
     val room by lazyDeferred{
         repository.getRoom()
     }
+
+    val user = repository.getUser()
 }

@@ -4,7 +4,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.rrdev.roombookingmvvm.ui.main.MainActivity;
-import com.rrdev.roombookingmvvm.data.notification.MyNotificationManager;
+import com.rrdev.roombookingmvvm.util.MyNotificationManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;

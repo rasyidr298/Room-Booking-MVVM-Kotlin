@@ -1,22 +1,20 @@
 package com.rrdev.roombookingmvvm.data.db.entities
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 //menyimpan user yang sama
 const val CURRENT_USER_ID = 0
 
 @Entity
 data class User(
-    val idUsers: String,
-    val nim: String,
-    val namaUser: String,
-    val nohp: String,
-    val password: String,
-    val token: String,
-    val image: String
+    val idUsers: String?= null,
+    val nim: String?= null,
+    val namaUser: String?= null,
+    val nohp: String?= null,
+    val password: String?= null,
+    val token: String?= null,
+    val image: String?= null
 )
 {
     //hanya menyimpan 1 user saja
