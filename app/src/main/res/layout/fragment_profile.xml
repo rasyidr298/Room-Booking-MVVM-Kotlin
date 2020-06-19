@@ -132,8 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewmodel.user.nim}"
-                                android:textSize="20sp"
-                                tools:text="@string/_180020285" />
+                                android:textSize="20sp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -169,13 +168,13 @@
                                 android:text="@string/nama"
                                 android:textSize="20sp" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/tvNamaProfile"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewmodel.user.namaUser}"
                                 android:textSize="20sp"
-                                tools:text="@string/rasyid_ridla" />
+                                android:inputType="text"  />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -211,13 +210,13 @@
                                 android:text="@string/no_hp"
                                 android:textSize="20sp" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/tvNoTelpProfile"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewmodel.user.nohp}"
                                 android:textSize="20sp"
-                                tools:text="@string/_02548848461" />
+                                android:inputType="text" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -253,13 +252,13 @@
                                 android:text="@string/password"
                                 android:textSize="20sp" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/tvPasswordProfile"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewmodel.user.password}"
                                 android:textSize="20sp"
-                                tools:text="@string/_180020285" />
+                                android:inputType="text" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
