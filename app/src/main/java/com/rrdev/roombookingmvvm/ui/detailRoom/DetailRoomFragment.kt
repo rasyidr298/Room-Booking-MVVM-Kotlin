@@ -1,9 +1,10 @@
-package com.rrdev.roombookingmvvm.ui.home.detail
+package com.rrdev.roombookingmvvm.ui.detailRoom
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,9 +17,9 @@ import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
 import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.util.BASE
 import com.rrdev.roombookingmvvm.util.Coroutines
+import com.rrdev.roombookingmvvm.util.hide
 import kotlinx.android.synthetic.main.content_fragment_detail_room.*
 import kotlinx.android.synthetic.main.fragment_detail_room.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class DetailRoomFragment : Fragment() {
 
@@ -34,17 +35,21 @@ class DetailRoomFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val safeArgs = arguments?.let {DetailRoomFragmentArgs.fromBundle(it).namaRoom}
+        val safeArgs = arguments?.let { DetailRoomFragmentArgs.fromBundle(it).namaRoom}
         val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
         val api = MyApi(networkConnectionInterceptor)
         val db = AppDatabase(requireContext())
         val repository = RoomRepository(api, db)
-        val factory = DetailViewModelFactory(safeArgs.toString(),repository)
+        val factory = DetailViewModelFactory(safeArgs.toString(), repository)
 
         viewModel = ViewModelProviders.of(this, factory).get(DetailViewModel::class.java)
 
+        if(activity is AppCompatActivity){
+            (activity as AppCompatActivity).setSupportActionBar(toolbar_detail_room)}
+        
         toBooking()
         getDetailRoom()
+        setupToolbar()
     }
 
     private fun toBooking() {
@@ -56,9 +61,9 @@ class DetailRoomFragment : Fragment() {
     private fun getDetailRoom() {
         Coroutines.main {
             val detailRoom = viewModel.detailRoom.await()
-            detailRoom.observe(viewLifecycleOwner, Observer {
-                tvNamaRoomDetailAct.text = it.namaRoom
-                tvKapasitasRoomHome.text = it.kapasitas.toString()
+            detailRoom.observe(this, Observer {
+                tvNamaRoomDetailAct.text = "Ruang " + it.namaRoom
+                tvKapasitasRoomHome.text = "Kapasitas "+it.kapasitas.toString()
                 tvFasilitas1.text = it.fasilitas1
                 tvFasilitas2.text = it.fasilitas2
                 tvFasilitas3.text = it.fasilitas3
@@ -66,7 +71,14 @@ class DetailRoomFragment : Fragment() {
                 tvDeskripsi.text = it.deskripsi
                 val imageRoom = it.image
                 Glide.with(this).load(BASE+imageRoom).into(det_gambar)
+                fabDetail.hide()
             })
         }
+    }
+
+    private fun setupToolbar(){
+        (activity as AppCompatActivity).supportActionBar?.title = "Detail Room"
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }

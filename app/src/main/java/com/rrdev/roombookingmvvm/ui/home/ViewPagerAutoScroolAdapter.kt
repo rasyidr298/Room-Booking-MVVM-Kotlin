@@ -1,4 +1,4 @@
-package com.rrdev.roombookingmvvm.adapter
+package com.rrdev.roombookingmvvm.ui.home
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -42,12 +42,12 @@ class ViewPagerAutoScroolAdapter (
 
         private fun getBackgroundColor(number: Int): Int {
             return when (number) {
-                0 -> R.drawable.img_contoh
-                1 -> R.drawable.img_contoh
-                2 -> R.drawable.img_contoh
-                3 -> R.drawable.img_contoh
-                4 -> android.R.color.holo_purple
-                5 -> android.R.color.black
+                0 -> R.drawable.img_room_1
+                1 -> R.drawable.img_room_2
+                2 -> R.drawable.img_room_3
+                3 -> R.drawable.img_room_4
+                4 -> R.drawable.img_room_5
+                5 -> R.drawable.img_room_6
                 else -> android.R.color.black
             }
         }

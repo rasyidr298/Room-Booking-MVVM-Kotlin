@@ -8,8 +8,11 @@
     <color name="white">#fff</color>
     <color name="yellow">#F1D643</color>
     <color name="red">#FF0000</color>
+    <color name="red_old">#D80F0F</color>
     <color name="green">#41DD15</color>
+    <color name="green_old">#27AF00</color>
     <color name="grey">#D8D7D7</color>
+    <color name="grey_soft">#F4F4F4</color>
     <color name="grey2">#ACA8A8</color>
     <color name="black">#000000</color>
 </resources>

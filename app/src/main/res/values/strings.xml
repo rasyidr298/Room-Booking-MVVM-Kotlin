@@ -4,7 +4,7 @@
     <string name="ruang_3_4_1">Ruang 3.4.1</string>
     <string name="_26_feb_2020">26-Feb-2020</string>
     <string name="_22_44">22:44</string>
-    <string name="_22_33">22:33</string>
+    <string name="_22_33">22:33-</string>
     <string name="a">-</string>
     <string name="cancel">Cancel</string>
     <string name="pending">Pending</string>
@@ -39,6 +39,12 @@
     <string name="booking">Booking</string>
     <string name="favorite">Favorite</string>
     <string name="profile">Profile</string>
+    <string name="info_status_pending">-ini adalah default status,jika anda telah berhasil melakukan booking
+-anda menunggu petugas paling lambat 1x24 jam untuk mengganti ke status accepted atau rejected-</string>
+    <string name="info_status_reject">-ini adalah status jika booking ruang anda tidak disetujui oleh petugas
+-jika status booking rejected silahkan menunggu 1x24 jam untuk bisa melakukan booking ruangan kembali</string>
+    <string name="info_status_accepted">-ini adalah status jika booking ruang anda di setujui petugas
+-jika status booking accepted segera konfirmasi ke petugas sarpras untuk melakukan pengisian formulir.</string>
 
 
     <string name="titleStart">jam mulai</string>

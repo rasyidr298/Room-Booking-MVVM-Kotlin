@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
@@ -22,6 +23,7 @@ import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 import com.rrdev.roombookingmvvm.databinding.FragmentProfileBinding
 import com.rrdev.roombookingmvvm.ui.auth.LoginFragment
 import com.rrdev.roombookingmvvm.util.BASE
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
@@ -68,6 +70,9 @@ class ProfileFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner, Observer {
             val imageProfile = it.image
             Glide.with(this).load(BASE+imageProfile).into(ivProfile)
+            Glide.with(this).load(BASE+imageProfile)
+                .apply(RequestOptions.bitmapTransform(BlurTransformation(30, 3)))
+                .into(imageView)
         })
     }
 }

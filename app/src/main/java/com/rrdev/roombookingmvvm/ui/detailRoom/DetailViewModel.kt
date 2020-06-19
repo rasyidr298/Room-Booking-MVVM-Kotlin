@@ -1,4 +1,4 @@
-package com.rrdev.roombookingmvvm.ui.home.detail
+package com.rrdev.roombookingmvvm.ui.detailRoom
 
 import androidx.lifecycle.ViewModel
 import com.rrdev.roombookingmvvm.data.repositories.RoomRepository

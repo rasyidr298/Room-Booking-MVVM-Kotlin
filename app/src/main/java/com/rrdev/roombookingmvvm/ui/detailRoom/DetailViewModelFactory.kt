@@ -1,4 +1,4 @@
-package com.rrdev.roombookingmvvm.ui.home.detail
+package com.rrdev.roombookingmvvm.ui.detailRoom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +11,9 @@ class DetailViewModelFactory(
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DetailViewModel(namaRoom,repository) as T
+        return DetailViewModel(
+            namaRoom,
+            repository
+        ) as T
     }
 }

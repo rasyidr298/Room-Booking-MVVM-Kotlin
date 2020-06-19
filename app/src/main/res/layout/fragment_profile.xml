@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewmodel"
             type="com.rrdev.roombookingmvvm.ui.profile.ProfileViewModel" />
     </data>
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,38 +22,65 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="0dp"
-                    android:layout_height="160dp"
+                    android:layout_height="240dp"
                     android:background="@color/purple"
+                    android:contentDescription="@string/todo"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/todo" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RelativeLayout
                     android:id="@+id/outline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="115dp"
+                    android:layout_marginTop="50dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:src="@color/purple" />
+                        android:src="@color/white" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ivProfile"
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@color/yellow" />
+                        android:layout_centerVertical="true"/>
                 </RelativeLayout>
+
+                <TextView
+                    android:text="@{viewmodel.user.namaUser}"
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:text="Rasyid Ridla"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/outline" />
+
+                <TextView
+                    android:text="@{viewmodel.user.nim}"
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="0285"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <LinearLayout
                     android:id="@+id/layProfile"
@@ -63,13 +90,11 @@
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginVertical="30dp"
                     android:layout_marginStart="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/outline">
+                    app:layout_constraintTop_toBottomOf="@+id/imageView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -85,16 +110,16 @@
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_nim"
-                                android:contentDescription="@string/todo" />
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_nim" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
                             android:layout_marginLeft="15dp"
-                            android:orientation="vertical"
-                            android:layout_marginStart="15dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -103,12 +128,12 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:text="@{viewmodel.user.nim}"
                                 android:id="@+id/tvNIMProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="@string/_180020285"
-                                android:textSize="20sp" />
+                                android:text="@{viewmodel.user.nim}"
+                                android:textSize="20sp"
+                                tools:text="@string/_180020285" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -127,16 +152,16 @@
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_profile"
-                                android:contentDescription="@string/todo" />
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_profile" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
                             android:layout_marginLeft="15dp"
-                            android:orientation="vertical"
-                            android:layout_marginStart="15dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -145,12 +170,12 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:text="@{viewmodel.user.namaUser}"
                                 android:id="@+id/tvNamaProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="@string/rasyid_ridla"
-                                android:textSize="20sp" />
+                                android:text="@{viewmodel.user.namaUser}"
+                                android:textSize="20sp"
+                                tools:text="@string/rasyid_ridla" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -169,16 +194,16 @@
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_no"
-                                android:contentDescription="@string/todo" />
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_no" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
                             android:layout_marginLeft="15dp"
-                            android:orientation="vertical"
-                            android:layout_marginStart="15dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -187,12 +212,12 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:text="@{viewmodel.user.nohp}"
                                 android:id="@+id/tvNoTelpProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="@string/_02548848461"
-                                android:textSize="20sp" />
+                                android:text="@{viewmodel.user.nohp}"
+                                android:textSize="20sp"
+                                tools:text="@string/_02548848461" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -211,16 +236,16 @@
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_password"
-                                android:contentDescription="@string/todo" />
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_password" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
                             android:layout_marginLeft="15dp"
-                            android:orientation="vertical"
-                            android:layout_marginStart="15dp">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -229,12 +254,12 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:text="@{viewmodel.user.password}"
                                 android:id="@+id/tvPasswordProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="@string/_180020285"
-                                android:textSize="20sp" />
+                                android:text="@{viewmodel.user.password}"
+                                android:textSize="20sp"
+                                tools:text="@string/_180020285" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

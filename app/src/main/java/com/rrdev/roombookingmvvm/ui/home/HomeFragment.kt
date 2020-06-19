@@ -18,22 +18,17 @@ import com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
 import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
-import com.rrdev.roombookingmvvm.adapter.ViewPagerAutoScroolAdapter
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
 import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.databinding.FragmentHomeBinding
-import com.rrdev.roombookingmvvm.databinding.FragmentProfileBinding
-import com.rrdev.roombookingmvvm.ui.profile.ProfileViewModel
 import com.rrdev.roombookingmvvm.util.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.content_fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.item_home.*
 
 class HomeFragment : Fragment() {
 
@@ -153,6 +148,7 @@ class HomeFragment : Fragment() {
         items.add(2, 3)
         items.add(3, 4)
         items.add(4, 5)
+        items.add(5, 6)
         //0-> special items
         return items
     }
@@ -161,13 +157,13 @@ class HomeFragment : Fragment() {
         //Custom bind indicator
         indicatorView.highlighterViewDelegate = {
             val highlighter = View(activity)
-            highlighter.layoutParams = FrameLayout.LayoutParams(16.dp(), 2.dp())
+            highlighter.layoutParams = FrameLayout.LayoutParams(16.dp(), 3.dp())
             highlighter.setBackgroundColor(activity?.resources!!.getColor(R.color.white))
             highlighter
         }
         indicatorView.unselectedViewDelegate = {
             val unselected = View(activity)
-            unselected.layoutParams = LinearLayout.LayoutParams(16.dp(), 2.dp())
+            unselected.layoutParams = LinearLayout.LayoutParams(16.dp(), 3.dp())
             unselected.setBackgroundColor(activity?.resources!!.getColor(R.color.white))
             unselected.alpha = 0.4f
             unselected

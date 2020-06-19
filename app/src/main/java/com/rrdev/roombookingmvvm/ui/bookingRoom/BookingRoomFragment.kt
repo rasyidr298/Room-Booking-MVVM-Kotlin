@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.akexorcist.snaptimepicker.SnapTimePickerDialog
 import com.akexorcist.snaptimepicker.TimeRange
 import com.akexorcist.snaptimepicker.TimeValue
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendarAdapter
@@ -28,9 +28,9 @@ import com.rrdev.roombookingmvvm.util.BASE
 import com.rrdev.roombookingmvvm.util.hide
 import com.rrdev.roombookingmvvm.util.show
 import com.rrdev.roombookingmvvm.util.snackbar
-import kotlinx.android.synthetic.main.item_calender.view.*
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_booking_room.*
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.item_calender.view.*
 import java.util.*
 
 class BookingRoomFragment : Fragment(),BookingRoomListener {
@@ -210,8 +210,9 @@ class BookingRoomFragment : Fragment(),BookingRoomListener {
     private fun detailRoom() {
         viewModel.detailRoom.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             val imageRoom = it.image
-            Glide.with(this).load(BASE +imageRoom).into(imageView3)
+            Glide.with(this).load(BASE +imageRoom)
+                .apply(RequestOptions.bitmapTransform(BlurTransformation(15, 3)))
+                .into(imageView3)
         })
     }
-
 }
