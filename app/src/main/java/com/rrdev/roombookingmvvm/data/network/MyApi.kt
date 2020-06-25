@@ -40,6 +40,11 @@ interface MyApi {
         @Field("keterangan") keterangan: String
     ) : Response<BookingRoomResponse>
 
+    @GET("/Backend%20Room%20Booking/TableBookings/DeleteBooking.php")
+    suspend fun cancelBooking(
+        @Query("idBooking") idBooking: String?
+    ): Response<CancelBookingResponse>
+
     @GET("/Backend%20Room%20Booking/TableRooms/GetAllRooms.php")
     suspend fun getRoom(
     ):Response<RoomResponse>

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.rrdev.roombookingmvvm.R
-import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.User
 import com.rrdev.roombookingmvvm.data.network.MyApi
@@ -29,13 +28,10 @@ class SignUpFragment : Fragment(),AuthListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
         val api = MyApi(networkConnectionInterceptor)
         val db = AppDatabase(requireContext())
-        val sharedPrefToken = SharedPrefToken.getInstance(requireContext())
-        val repository = UserRepository(api,db,sharedPrefToken)
+        val repository = UserRepository(api,db)
         val factory = AuthViewModelFactory(repository)
 
         val binding: FragmentSignUpBinding = DataBindingUtil.inflate(

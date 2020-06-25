@@ -7,7 +7,6 @@ import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 
 @Dao
 interface RoomDao {
-    //menyimpan dan menimpa data user
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAllRoom(rooms: List<Rooms>)
 

@@ -19,10 +19,6 @@ import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendarAdapter
 import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
 import com.rrdev.roombookingmvvm.R
-import com.rrdev.roombookingmvvm.data.db.AppDatabase
-import com.rrdev.roombookingmvvm.data.network.MyApi
-import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
-import com.rrdev.roombookingmvvm.data.repositories.BookingRoomRepository
 import com.rrdev.roombookingmvvm.databinding.FragmentBookingRoomBinding
 import com.rrdev.roombookingmvvm.util.BASE
 import com.rrdev.roombookingmvvm.util.hide
@@ -31,21 +27,21 @@ import com.rrdev.roombookingmvvm.util.snackbar
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_booking_room.*
 import kotlinx.android.synthetic.main.item_calender.view.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import java.util.*
 
-class BookingRoomFragment : Fragment(),BookingRoomListener {
+class BookingRoomFragment : Fragment(),BookingRoomListener,KodeinAware {
 
+    override val kodein by kodein()
+    private val factory: BookingRoomViewModelFactory by instance()
     private lateinit var viewModel: BookingRoomViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
-        val api = MyApi(networkConnectionInterceptor)
-        val db = AppDatabase.invoke(requireContext())
-        val repository = BookingRoomRepository(api,db)
-        val factory = BookingRoomViewModelFactory(repository)
 
         val binding: FragmentBookingRoomBinding = DataBindingUtil.inflate(
             inflater,  R.layout.fragment_booking_room,container,false)

@@ -18,20 +18,21 @@ import com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
 import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
-import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
-import com.rrdev.roombookingmvvm.data.network.MyApi
-import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
-import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.databinding.FragmentHomeBinding
 import com.rrdev.roombookingmvvm.util.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.content_fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),KodeinAware {
 
+    override val kodein by kodein()
+    private val factory: HomeViewModelFactory by instance()
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewPager: LoopingViewPager
     private var adapter: ViewPagerAutoScroolAdapter? = null
@@ -41,11 +42,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
-        val api = MyApi(networkConnectionInterceptor)
-        val db = AppDatabase(requireContext())
-        val repository = RoomRepository(api,db)
-        val factory = HomeViewModelFactory(repository)
 
         val binding: FragmentHomeBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false)
@@ -118,14 +114,14 @@ class HomeFragment : Fragment() {
 
         mAdapter.setOnItemClickListener{items, view->
             (items as? HomeItem)?.let {
-                showRoomDetail(it.rooms.namaRoom,view)
+                showRoomDetail(view)
                 prefManager.spNamaRoom = it.rooms.namaRoom
             }
         }
     }
     //show detail item Rooms
-    private fun showRoomDetail(namaRoom: String, view: View){
-        val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailRoomFragment(namaRoom)
+    private fun showRoomDetail(view: View){
+        val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailRoomFragment()
         Navigation.findNavController(view).navigate(actionDetail)
     }
 

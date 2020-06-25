@@ -3,6 +3,7 @@ package com.rrdev.roombookingmvvm.data.repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.DetailRooms
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
@@ -54,12 +55,10 @@ class RoomRepository(
         }
     }
 
-    suspend fun getDetailRoomByName(
-        namaRoom: String
-    ): LiveData<DetailRooms> {
+    suspend fun getDetailRoomByName(): LiveData<DetailRooms> {
         return withContext(Dispatchers.IO) {
             fetchRoom()
-            db.getRoomDao().getDetailRoom(namaRoom)
+            db.getRoomDao().getDetailRoom(prefManager.spNamaRoom.toString())
         }
     }
 

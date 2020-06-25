@@ -7,6 +7,7 @@ private const val PREFS_NAME = "booking_apps"
 private const val NIM_USER = "key_nim"
 private const val NAMA_USER = "key_nama"
 private const val NAMA_ROOM = "key_nama_room"
+private const val ID_BOOKING = "key_id_booking"
 
 class PrefManager(context: Context) {
 
@@ -40,6 +41,13 @@ class PrefManager(context: Context) {
         get() = sp.getString(NAMA_ROOM, "")
         set(value) {
             spe.putString(NAMA_ROOM, value)
+            spe.commit()
+        }
+
+    var spIdBooking: String?
+        get() = sp.getString(ID_BOOKING, "")
+        set(value) {
+            spe.putString(ID_BOOKING, value)
             spe.commit()
         }
 }

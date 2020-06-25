@@ -11,18 +11,19 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
-import com.rrdev.roombookingmvvm.data.db.AppDatabase
-import com.rrdev.roombookingmvvm.data.network.MyApi
-import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
-import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
 import com.rrdev.roombookingmvvm.util.BASE
 import com.rrdev.roombookingmvvm.util.Coroutines
 import com.rrdev.roombookingmvvm.util.hide
 import kotlinx.android.synthetic.main.content_fragment_detail_room.*
 import kotlinx.android.synthetic.main.fragment_detail_room.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
-class DetailRoomFragment : Fragment() {
+class DetailRoomFragment : Fragment(),KodeinAware {
 
+    override val kodein by kodein()
+    private val factory: DetailViewModelFactory by instance()
     private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(
@@ -34,13 +35,6 @@ class DetailRoomFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val safeArgs = arguments?.let { DetailRoomFragmentArgs.fromBundle(it).namaRoom}
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
-        val api = MyApi(networkConnectionInterceptor)
-        val db = AppDatabase(requireContext())
-        val repository = RoomRepository(api, db)
-        val factory = DetailViewModelFactory(safeArgs.toString(), repository)
 
         viewModel = ViewModelProviders.of(this, factory).get(DetailViewModel::class.java)
 

@@ -17,6 +17,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:onClick="@{viewmodel::onCancelBookingOnClick}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancel"
+                app:layout_constraintBottom_toBottomOf="@+id/cvBookingAccepted"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarMyticket" />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarMyticket"
                 android:layout_width="match_parent"

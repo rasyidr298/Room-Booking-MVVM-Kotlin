@@ -1,5 +1,4 @@
 package com.rrdev.roombookingmvvm.data.repositories
-import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.User
 import com.rrdev.roombookingmvvm.data.network.MyApi
@@ -8,8 +7,7 @@ import com.rrdev.roombookingmvvm.data.network.responses.AuthResponse
 
 class UserRepository(
     private val api: MyApi,
-    private val db: AppDatabase,
-    private val sharedPrefToken: SharedPrefToken
+    private val db: AppDatabase
 ) :SafeApiRequest() {
 
     suspend fun userLogin(nim: String, password: String ): AuthResponse {
@@ -26,7 +24,5 @@ class UserRepository(
     suspend fun saveUser(user: User) = db.getUserDao().saveUser(user)
 
     fun getUser() = db.getUserDao().getUser()
-
-    fun getToken() = sharedPrefToken.deviceToken
 
 }
