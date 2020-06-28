@@ -8,6 +8,7 @@ private const val NIM_USER = "key_nim"
 private const val NAMA_USER = "key_nama"
 private const val NAMA_ROOM = "key_nama_room"
 private const val ID_BOOKING = "key_id_booking"
+private const val TOKEN = "key_token"
 
 class PrefManager(context: Context) {
 
@@ -27,6 +28,7 @@ class PrefManager(context: Context) {
         spe.remove(ID_BOOKING)
     }
 
+    //store Nim
     var spNim: String?
         get() = sp.getString(NIM_USER, "")
         set(value) {
@@ -34,6 +36,7 @@ class PrefManager(context: Context) {
             spe.commit()
         }
 
+    //store nama
     var spNama: String?
         get() = sp.getString(NAMA_USER, "")
         set(value) {
@@ -48,10 +51,19 @@ class PrefManager(context: Context) {
             spe.commit()
         }
 
+    //store IdBooking
     var spIdBooking: String?
         get() = sp.getString(ID_BOOKING, "")
         set(value) {
             spe.putString(ID_BOOKING, value)
+            spe.commit()
+        }
+
+    //store token
+    var spToken: String?
+        get() = sp.getString(TOKEN, "")
+        set(value) {
+            spe.putString(TOKEN, value)
             spe.commit()
         }
 }

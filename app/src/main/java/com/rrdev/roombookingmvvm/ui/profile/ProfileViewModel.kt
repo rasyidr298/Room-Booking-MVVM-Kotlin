@@ -36,7 +36,7 @@ class ProfileViewModel(
                     repository.saveProfile(it)
                     return@main
                 }
-                profileListener?.onFailure(profileResponse.status.toString())
+                //profileListener?.onFailure(profileResponse.status.toString())
             }catch (e: ApiException){
                 profileListener?.onFailure(e.message!!)
             }catch (e: NoInternetException){

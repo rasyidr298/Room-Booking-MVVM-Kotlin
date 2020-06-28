@@ -20,12 +20,17 @@ import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
+import com.rrdev.roombookingmvvm.data.network.MyApi
+import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
 import com.rrdev.roombookingmvvm.databinding.FragmentHomeBinding
 import com.rrdev.roombookingmvvm.util.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.content_fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -60,6 +65,7 @@ class HomeFragment : Fragment(),KodeinAware {
         init()
         indikatorViewPager()
         imageProfile()
+        storeIdBookings()
     }
 
     override fun onResume() {
@@ -174,11 +180,21 @@ class HomeFragment : Fragment(),KodeinAware {
         indicatorView.updateIndicatorCounts(viewPager.indicatorCount)
     }
 
-
     private fun imageProfile() {
         viewModel.user.observe(viewLifecycleOwner, Observer {
             val imageProfile = it.image
             Glide.with(this).load(BASE+imageProfile).into(circleImageView2)
         })
     }
+
+    private fun storeIdBookings() {
+        GlobalScope.async(Dispatchers.Main) {
+            val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
+            val api = MyApi(networkConnectionInterceptor)
+            val myNim = prefManager.spNim.toString()
+            val myBooking = api.getMyBooking(myNim).await()
+            prefManager.spIdBooking = myBooking.myBooking?.idBooking
+        }
+    }
+
 }

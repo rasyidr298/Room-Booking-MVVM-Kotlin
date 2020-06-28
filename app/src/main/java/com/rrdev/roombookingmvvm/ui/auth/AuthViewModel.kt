@@ -2,6 +2,7 @@ package com.rrdev.roombookingmvvm.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManagerToken
 import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 import com.rrdev.roombookingmvvm.util.ApiException
@@ -58,7 +59,7 @@ class AuthViewModel(
         Coroutines.main {
             try {
                 val authResponse =
-                    repository.userSignUp(nim!!, namaUser!!, nohp!!, password!!, prefManagerToken.deviceToken!!)
+                    repository.userSignUp(nim!!, namaUser!!, nohp!!, password!!, prefManager.spToken!!)
                 authResponse.user?.let {
                     authListener?.onSucces(it)
                     repository.saveUser(it)

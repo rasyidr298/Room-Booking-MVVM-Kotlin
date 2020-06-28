@@ -1,6 +1,10 @@
 package com.rrdev.roombookingmvvm
 
 import android.app.Application
+import android.content.ContentValues
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.rrdev.roombookingmvvm.data.SharedPreferences.PrefManager
 import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
@@ -69,5 +73,20 @@ class RoomBookingApps : Application(), KodeinAware {
         instance = this
         prefManager = PrefManager(this)
         prefManagerToken = SharedPrefToken.getInstance(this)
+        getToken()
+    }
+
+    private fun getToken() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(ContentValues.TAG, "getInstanceId failed", task.exception)
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+                prefManager.spToken = token
+            })
     }
 }
