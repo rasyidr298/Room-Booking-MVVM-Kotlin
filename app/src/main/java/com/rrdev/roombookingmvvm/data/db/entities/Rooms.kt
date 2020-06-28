@@ -15,4 +15,4 @@ data class Rooms(
     val fasilitas4: String,
     val deskripsi: String,
     val image: String
-): Serializable
+)

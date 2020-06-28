@@ -3,7 +3,6 @@ package com.rrdev.roombookingmvvm.data.db.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//menyimpan user yang sama
 const val CURRENT_USER_ID = 0
 
 @Entity

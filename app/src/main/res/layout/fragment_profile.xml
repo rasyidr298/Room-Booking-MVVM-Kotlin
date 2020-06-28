@@ -8,6 +8,7 @@
             type="com.rrdev.roombookingmvvm.ui.profile.ProfileViewModel" />
     </data>
     <FrameLayout
+        android:id="@+id/root_layout_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,6 +19,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/pbProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -56,8 +66,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:text="@{viewmodel.user.namaUser}"
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvNamaHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -70,8 +79,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/outline" />
 
                 <TextView
-                    android:text="@{viewmodel.user.nim}"
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvNimHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -80,7 +88,7 @@
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvNamaHeader" />
 
                 <LinearLayout
                     android:id="@+id/layProfile"
@@ -131,7 +139,6 @@
                                 android:id="@+id/tvNIMProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{viewmodel.user.nim}"
                                 android:textSize="20sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -168,13 +175,21 @@
                                 android:text="@string/nama"
                                 android:textSize="20sp" />
 
-                            <EditText
-                                android:id="@+id/tvNamaProfile"
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{viewmodel.user.namaUser}"
-                                android:textSize="20sp"
-                                android:inputType="text"  />
+                                tools:targetApi="p">
+
+                                <EditText
+                                    android:id="@+id/etNamaProfile"
+                                    android:text="@={viewmodel.nama}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:inputType="textPersonName"  />
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -210,13 +225,21 @@
                                 android:text="@string/no_hp"
                                 android:textSize="20sp" />
 
-                            <EditText
-                                android:id="@+id/tvNoTelpProfile"
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{viewmodel.user.nohp}"
-                                android:textSize="20sp"
-                                android:inputType="text" />
+                                tools:targetApi="p">
+
+                                <EditText
+                                    android:id="@+id/etNoTelpProfile"
+                                    android:text="@={viewmodel.nohp}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:inputType="number" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -252,18 +275,30 @@
                                 android:text="@string/password"
                                 android:textSize="20sp" />
 
-                            <EditText
-                                android:id="@+id/tvPasswordProfile"
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{viewmodel.user.password}"
-                                android:textSize="20sp"
-                                android:inputType="text" />
+                                tools:targetApi="p"
+                                app:passwordToggleEnabled="true">
+
+                                <EditText
+                                    android:id="@+id/etPasswordProfile"
+                                    android:text="@={viewmodel.password}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    tools:targetApi="p"
+                                    android:inputType="textPassword" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:onClick="@{viewmodel::onUpdateButtonnnClick}"
                     android:id="@+id/btnLogout"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -275,20 +310,21 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
                     android:background="@drawable/bg_available"
-                    android:text="@string/logout"
+                    android:text="@string/update"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layProfile" />
 
                 <TextView
+                    android:id="@+id/tvLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/btnLogout"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="32dp"
-                    android:text="@string/update_profile"
+                    android:text="@string/logout_profile"
                     android:textColor="@color/purple"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

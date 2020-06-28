@@ -23,6 +23,10 @@ class PrefManager(context: Context) {
         sp.edit().clear().apply()
     }
 
+    fun clearIdBooking(){
+        spe.remove(ID_BOOKING)
+    }
+
     var spNim: String?
         get() = sp.getString(NIM_USER, "")
         set(value) {

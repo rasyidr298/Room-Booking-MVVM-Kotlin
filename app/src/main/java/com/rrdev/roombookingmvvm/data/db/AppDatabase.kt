@@ -4,19 +4,22 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.rrdev.roombookingmvvm.data.db.dao.ProfileDao
 import com.rrdev.roombookingmvvm.data.db.dao.RoomDao
 import com.rrdev.roombookingmvvm.data.db.dao.UserDao
+import com.rrdev.roombookingmvvm.data.db.entities.Profile
 import com.rrdev.roombookingmvvm.data.db.entities.Rooms
 import com.rrdev.roombookingmvvm.data.db.entities.User
 
 @Database(
-    entities = [User::class, Rooms::class],
+    entities = [User::class, Rooms::class, Profile::class],
     version = 1
 )
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getUserDao(): UserDao
     abstract fun getRoomDao(): RoomDao
+    abstract fun getProfileDao(): ProfileDao
 
     companion object{
         @Volatile

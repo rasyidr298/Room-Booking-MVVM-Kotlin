@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +33,7 @@ import org.kodein.di.generic.instance
 class HomeFragment : Fragment(),KodeinAware {
 
     override val kodein by kodein()
-    private val factory: HomeViewModelFactory by instance()
+    private val factory: HomeViewModelFactory by instance<HomeViewModelFactory>()
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewPager: LoopingViewPager
     private var adapter: ViewPagerAutoScroolAdapter? = null
@@ -46,7 +47,7 @@ class HomeFragment : Fragment(),KodeinAware {
         val binding: FragmentHomeBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false)
 
-        viewModel = ViewModelProviders.of(
+        viewModel = ViewModelProvider(
             this , factory).get(HomeViewModel::class.java)
 
         binding.viewmodel = viewModel
@@ -126,7 +127,7 @@ class HomeFragment : Fragment(),KodeinAware {
     }
 
     //init AutoScroolViewPager
-    fun init() {
+    private fun init() {
         viewPager = view?.findViewById(R.id.viewpager)!!
         indicatorView = view?.findViewById(R.id.indicator)!!
         adapter = ViewPagerAutoScroolAdapter(
@@ -154,13 +155,13 @@ class HomeFragment : Fragment(),KodeinAware {
         indicatorView.highlighterViewDelegate = {
             val highlighter = View(activity)
             highlighter.layoutParams = FrameLayout.LayoutParams(16.dp(), 3.dp())
-            highlighter.setBackgroundColor(activity?.resources!!.getColor(R.color.white))
+            highlighter.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
             highlighter
         }
         indicatorView.unselectedViewDelegate = {
             val unselected = View(activity)
             unselected.layoutParams = LinearLayout.LayoutParams(16.dp(), 3.dp())
-            unselected.setBackgroundColor(activity?.resources!!.getColor(R.color.white))
+            unselected.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
             unselected.alpha = 0.4f
             unselected
         }

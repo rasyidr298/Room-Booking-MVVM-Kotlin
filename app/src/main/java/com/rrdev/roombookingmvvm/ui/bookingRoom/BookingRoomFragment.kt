@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.akexorcist.snaptimepicker.SnapTimePickerDialog
 import com.akexorcist.snaptimepicker.TimeRange
 import com.akexorcist.snaptimepicker.TimeValue
@@ -35,7 +36,7 @@ import java.util.*
 class BookingRoomFragment : Fragment(),BookingRoomListener,KodeinAware {
 
     override val kodein by kodein()
-    private val factory: BookingRoomViewModelFactory by instance()
+    private val factory: BookingRoomViewModelFactory by instance<BookingRoomViewModelFactory>()
     private lateinit var viewModel: BookingRoomViewModel
 
     override fun onCreateView(
@@ -46,7 +47,7 @@ class BookingRoomFragment : Fragment(),BookingRoomListener,KodeinAware {
         val binding: FragmentBookingRoomBinding = DataBindingUtil.inflate(
             inflater,  R.layout.fragment_booking_room,container,false)
 
-        viewModel = ViewModelProviders.of(
+        viewModel = ViewModelProvider(
             this, factory).get(BookingRoomViewModel::class.java)
 
         binding.viewmodel = viewModel
@@ -71,6 +72,7 @@ class BookingRoomFragment : Fragment(),BookingRoomListener,KodeinAware {
     override fun onSucces(message: String) {
         pbBookingRoom.hide()
         root_layoutBookingRoom.snackbar(message)
+        findNavController().navigate(R.id.action_bookingRoomFragment_to_homeFragment)
     }
 
     override fun onFailure(message: String) {

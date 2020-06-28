@@ -54,6 +54,21 @@ interface MyApi {
         @Query("nimBooking") nimBooking: String?
     ):Deferred<MyBookingResponse>
 
+    @GET("/Backend%20Room%20Booking/TableUsers/GetUser.php")
+    suspend fun getProfile(
+        @Query("nim") nim: String?
+    ):Response<ProfileResponse>
+
+    @FormUrlEncoded
+    @POST("/Backend%20Room%20Booking/TableUsers/UpdateUser.php")
+    suspend fun updateProfile(
+        @Query("nim") nimParams: String?,
+        @Field("nim") nim: String?,
+        @Field("namaUser") namaUser: String?,
+        @Field("nohp") nohp: String?,
+        @Field("password") password: String?
+    ):Response<ProfileResponse>
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

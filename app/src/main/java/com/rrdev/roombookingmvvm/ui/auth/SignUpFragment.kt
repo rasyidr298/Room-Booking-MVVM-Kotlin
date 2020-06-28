@@ -6,38 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rrdev.roombookingmvvm.R
-import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.db.entities.User
-import com.rrdev.roombookingmvvm.data.network.MyApi
-import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
-import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 import com.rrdev.roombookingmvvm.databinding.FragmentSignUpBinding
 import com.rrdev.roombookingmvvm.util.hide
 import com.rrdev.roombookingmvvm.util.show
 import com.rrdev.roombookingmvvm.util.snackbar
 import kotlinx.android.synthetic.main.fragment_sign_up.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
-class SignUpFragment : Fragment(),AuthListener {
+class SignUpFragment : Fragment(),AuthListener, KodeinAware {
 
+    override val kodein by kodein()
+    private val factory: AuthViewModelFactory by instance<AuthViewModelFactory>()
     private lateinit var viewModel: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val networkConnectionInterceptor = NetworkConnectionInterceptor(requireContext())
-        val api = MyApi(networkConnectionInterceptor)
-        val db = AppDatabase(requireContext())
-        val repository = UserRepository(api,db)
-        val factory = AuthViewModelFactory(repository)
 
         val binding: FragmentSignUpBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_sign_up,container,false)
 
-        viewModel = ViewModelProviders.of(
+        viewModel = ViewModelProvider(
             this,factory).get(AuthViewModel::class.java)
 
         binding.viewmodel = viewModel

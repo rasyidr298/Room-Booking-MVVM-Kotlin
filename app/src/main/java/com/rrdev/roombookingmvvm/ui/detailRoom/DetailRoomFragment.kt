@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.rrdev.roombookingmvvm.R
@@ -23,7 +23,7 @@ import org.kodein.di.generic.instance
 class DetailRoomFragment : Fragment(),KodeinAware {
 
     override val kodein by kodein()
-    private val factory: DetailViewModelFactory by instance()
+    private val factory: DetailViewModelFactory by instance<DetailViewModelFactory>()
     private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(
@@ -36,7 +36,7 @@ class DetailRoomFragment : Fragment(),KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this, factory).get(DetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
 
         if(activity is AppCompatActivity){
             (activity as AppCompatActivity).setSupportActionBar(toolbar_detail_room)}
@@ -55,8 +55,8 @@ class DetailRoomFragment : Fragment(),KodeinAware {
     private fun getDetailRoom() {
         Coroutines.main {
             val detailRoom = viewModel.detailRoom.await()
-            detailRoom.observe(this, Observer {
-                tvNamaRoomDetailAct.text = "Ruang " + it.namaRoom
+            detailRoom.observe(viewLifecycleOwner, Observer {
+                tvNamaRoomDetailAct.text = it.namaRoom
                 tvKapasitasRoomHome.text = "Kapasitas "+it.kapasitas.toString()
                 tvFasilitas1.text = it.fasilitas1
                 tvFasilitas2.text = it.fasilitas2

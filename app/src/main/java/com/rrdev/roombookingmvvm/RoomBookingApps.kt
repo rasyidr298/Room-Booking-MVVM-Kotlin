@@ -6,10 +6,7 @@ import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
-import com.rrdev.roombookingmvvm.data.repositories.BookingRoomRepository
-import com.rrdev.roombookingmvvm.data.repositories.MyBookingRepository
-import com.rrdev.roombookingmvvm.data.repositories.RoomRepository
-import com.rrdev.roombookingmvvm.data.repositories.UserRepository
+import com.rrdev.roombookingmvvm.data.repositories.*
 import com.rrdev.roombookingmvvm.ui.auth.AuthViewModel
 import com.rrdev.roombookingmvvm.ui.auth.AuthViewModelFactory
 import com.rrdev.roombookingmvvm.ui.bookingRoom.BookingRoomViewModel
@@ -43,6 +40,7 @@ class RoomBookingApps : Application(), KodeinAware {
         bind() from singleton { BookingRoomRepository(instance(), instance()) }
         bind() from singleton { MyBookingRepository(instance(), instance()) }
         bind() from singleton { RoomRepository(instance(), instance())  }
+        bind() from singleton { ProfileRepository(instance(), instance())  }
 
         bind() from singleton { AuthViewModel(instance()) }
         bind() from singleton { BookingRoomViewModel(instance()) }

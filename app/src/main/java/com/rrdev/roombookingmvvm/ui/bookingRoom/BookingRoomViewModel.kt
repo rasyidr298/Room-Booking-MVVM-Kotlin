@@ -35,7 +35,6 @@ class BookingRoomViewModel(
                     bookingRoomListener?.onSucces(roomBookingResponse.message!!)
                     return@main
                 }
-                bookingRoomListener?.onFailure(roomBookingResponse.message!!)
             }catch (e: ApiException){
                 bookingRoomListener?.onFailure(e.message!!)
             }catch (e: NoInternetException) {

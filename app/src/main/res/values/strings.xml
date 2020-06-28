@@ -4,14 +4,14 @@
     <string name="ruang_3_4_1">Ruang 3.4.1</string>
     <string name="_26_feb_2020">26-Feb-2020</string>
     <string name="_22_44">22:44</string>
-    <string name="_22_33">22:33-</string>
+    <string name="_22_33">22:33</string>
     <string name="a">-</string>
     <string name="cancel">Cancel</string>
     <string name="pending">Pending</string>
     <string name="kapasitas_30_orang">Kapasitas 30 Orang</string>
     <string name="available">Available</string>
-    <string name="update_profile">Update Profile</string>
-    <string name="logout">Logout</string>
+    <string name="logout_profile">Logout</string>
+    <string name="update">Update Profile</string>
     <string name="_02548848461">02548848461</string>
     <string name="no_hp">No Hp</string>
     <string name="rasyid_ridla">Rasyid Ridla</string>
@@ -42,7 +42,7 @@
     <string name="info_status_pending">-ini adalah default status,jika anda telah berhasil melakukan booking
 -anda menunggu petugas paling lambat 1x24 jam untuk mengganti ke status accepted atau rejected-</string>
     <string name="info_status_reject">-ini adalah status jika booking ruang anda tidak disetujui oleh petugas
--jika status booking rejected silahkan menunggu 1x24 jam untuk bisa melakukan booking ruangan kembali</string>
+-jika status booking rejected silahkan menunggu 1x24 jam untuk bisa melakukan booking ruangan kembali atau bisa langsung hapus booking ini.</string>
     <string name="info_status_accepted">-ini adalah status jika booking ruang anda di setujui petugas
 -jika status booking accepted segera konfirmasi ke petugas sarpras untuk melakukan pengisian formulir.</string>
 
