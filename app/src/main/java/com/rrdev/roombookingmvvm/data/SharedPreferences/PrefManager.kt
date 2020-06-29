@@ -61,7 +61,7 @@ class PrefManager(context: Context) {
 
     //store token
     var spToken: String?
-        get() = sp.getString(TOKEN, "")
+        get() = sp.getString(TOKEN, null)
         set(value) {
             spe.putString(TOKEN, value)
             spe.commit()

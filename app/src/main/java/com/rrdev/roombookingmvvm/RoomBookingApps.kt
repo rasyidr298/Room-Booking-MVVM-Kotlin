@@ -6,7 +6,6 @@ import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.rrdev.roombookingmvvm.data.SharedPreferences.PrefManager
-import com.rrdev.roombookingmvvm.data.SharedPreferences.SharedPrefToken
 import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
@@ -65,15 +64,13 @@ class RoomBookingApps : Application(), KodeinAware {
         @get:Synchronized
         lateinit var instance: RoomBookingApps
         lateinit var prefManager: PrefManager
-        lateinit var prefManagerToken: SharedPrefToken
     }
 
     override fun onCreate() {
-        super.onCreate()
+        getToken()
         instance = this
         prefManager = PrefManager(this)
-        prefManagerToken = SharedPrefToken.getInstance(this)
-        getToken()
+        super.onCreate()
     }
 
     private fun getToken() {
@@ -83,7 +80,6 @@ class RoomBookingApps : Application(), KodeinAware {
                     Log.w(ContentValues.TAG, "getInstanceId failed", task.exception)
                     return@OnCompleteListener
                 }
-
                 // Get new Instance ID token
                 val token = task.result?.token
                 prefManager.spToken = token

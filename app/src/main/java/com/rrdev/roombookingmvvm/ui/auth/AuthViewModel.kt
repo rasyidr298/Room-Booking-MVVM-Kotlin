@@ -3,7 +3,6 @@ package com.rrdev.roombookingmvvm.ui.auth
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
-import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManagerToken
 import com.rrdev.roombookingmvvm.data.repositories.UserRepository
 import com.rrdev.roombookingmvvm.util.ApiException
 import com.rrdev.roombookingmvvm.util.Coroutines
@@ -55,11 +54,26 @@ class AuthViewModel(
             return
         }
 
+        val token = prefManager.spToken
+        if (token.isNullOrEmpty()){
+            authListener?.onFailure("Gagal, Coba kembali..")
+            return
+        }
+
+        if (nim!!.length <= 5){
+            authListener?.onFailure("NIM minimal 6 character")
+            return
+        }
+
+        if (password!!.length <= 5){
+            authListener?.onFailure("Password minimal 6 character")
+            return
+        }
+
         // request register
         Coroutines.main {
             try {
-                val authResponse =
-                    repository.userSignUp(nim!!, namaUser!!, nohp!!, password!!, prefManager.spToken!!)
+                val authResponse = repository.userSignUp(nim!!, namaUser!!, nohp!!, password!!, token)
                 authResponse.user?.let {
                     authListener?.onSucces(it)
                     repository.saveUser(it)
