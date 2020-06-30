@@ -69,6 +69,15 @@ interface MyApi {
         @Field("password") password: String?
     ):Response<ProfileResponse>
 
+    @FormUrlEncoded
+    @POST("/Backend%20Room%20Booking/TableUsers/UpdateToken.php")
+    suspend fun updateToken(
+        @Query("nim") nimParams: String?,
+        @Field("token") token: String?,
+        @Field("nim") nim: String?
+    ):Response<UpdateTokenResponse>
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

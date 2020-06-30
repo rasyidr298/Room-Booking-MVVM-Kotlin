@@ -16,6 +16,7 @@ import com.rrdev.roombookingmvvm.util.Coroutines
 import com.rrdev.roombookingmvvm.util.hide
 import kotlinx.android.synthetic.main.content_fragment_detail_room.*
 import kotlinx.android.synthetic.main.fragment_detail_room.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -40,7 +41,7 @@ class DetailRoomFragment : Fragment(),KodeinAware {
 
         if(activity is AppCompatActivity){
             (activity as AppCompatActivity).setSupportActionBar(toolbar_detail_room)}
-        
+
         toBooking()
         getDetailRoom()
         setupToolbar()
@@ -56,7 +57,7 @@ class DetailRoomFragment : Fragment(),KodeinAware {
         Coroutines.main {
             val detailRoom = viewModel.detailRoom.await()
             detailRoom.observe(viewLifecycleOwner, Observer {
-                tvNamaRoomDetailAct.text = it.namaRoom
+                tvNamaRoomDetailAct.text = "Ruang "+it.namaRoom
                 tvKapasitasRoomHome.text = "Kapasitas "+it.kapasitas.toString()
                 tvFasilitas1.text = it.fasilitas1
                 tvFasilitas2.text = it.fasilitas2
@@ -75,4 +76,5 @@ class DetailRoomFragment : Fragment(),KodeinAware {
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+
 }

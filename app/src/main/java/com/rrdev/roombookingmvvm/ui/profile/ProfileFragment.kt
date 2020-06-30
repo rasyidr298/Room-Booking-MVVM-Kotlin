@@ -17,6 +17,7 @@ import com.rrdev.roombookingmvvm.RoomBookingApps.Companion.prefManager
 import com.rrdev.roombookingmvvm.databinding.FragmentProfileBinding
 import com.rrdev.roombookingmvvm.util.*
 import jp.wasabeef.glide.transformations.BlurTransformation
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein

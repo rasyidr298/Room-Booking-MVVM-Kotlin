@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Room Booking MVVM</string>
+    <string name="app_name">Room Booking</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ruang_3_4_1">Ruang 3.4.1</string>
     <string name="_26_feb_2020">26-Feb-2020</string>

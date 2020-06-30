@@ -26,6 +26,20 @@ class BookingRoomViewModel(
             return
         }
 
+        val token = prefManager.spToken
+        if (token.isNullOrEmpty()){
+            bookingRoomListener?.onFailure("Gagal, Coba kembali..")
+            return
+        }
+
+        Coroutines.main {
+            try {
+                repository.updateToken(prefManager.spNim!!, prefManager.spToken!!, prefManager.spNim!!)
+            }catch (e: NoInternetException) {
+                bookingRoomListener?.onFailure(e.message!!)
+            }
+        }
+
         //push booking
         Coroutines.main {
             try {

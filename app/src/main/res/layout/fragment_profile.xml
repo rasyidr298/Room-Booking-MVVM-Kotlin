@@ -7,6 +7,7 @@
             name="viewmodel"
             type="com.rrdev.roombookingmvvm.ui.profile.ProfileViewModel" />
     </data>
+
     <FrameLayout
         android:id="@+id/root_layout_profile"
         android:layout_width="match_parent"
@@ -333,4 +334,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </FrameLayout>
+
 </layout>

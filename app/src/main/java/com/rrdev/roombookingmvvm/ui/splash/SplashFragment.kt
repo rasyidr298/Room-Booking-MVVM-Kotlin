@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : Fragment() {
 
-    private val SPLASH_SCREEN_TIME_OUT: Long = 1000
+    private val SPLASH_SCREEN_TIME_OUT: Long = 3000
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
