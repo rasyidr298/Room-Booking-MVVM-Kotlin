@@ -39,6 +39,7 @@ class RoomRepository(
             if (isFetchNeeded()) {
                 val response = apiRequest { api.getRoom() }
                 room.postValue(response.rooms)
+                Log.d("test", response.rooms.toString())
             }
         } catch (e: NoInternetException) {
             Log.e("Connectivty", "No INTERNET CONNECTION")

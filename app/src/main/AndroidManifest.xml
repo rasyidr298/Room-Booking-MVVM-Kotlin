@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.rrdev.roombookingmvvm">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".RoomBookingApps"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/room"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/room"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="m">
         <activity android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -21,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".data.firebase.MyFirebaseInstanceIDService"
+        <service android:name="com.rrdev.roombookingmvvm.data.network.firebase.MyFirebaseInstanceIDService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

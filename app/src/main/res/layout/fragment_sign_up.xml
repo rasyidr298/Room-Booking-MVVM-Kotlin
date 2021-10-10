@@ -145,7 +145,8 @@
                         android:layout_marginTop="10dp"
                         android:outlineSpotShadowColor="@color/purple"
                         android:textColorHint="@color/purple"
-                        app:boxStrokeColor="@color/purple" tools:targetApi="p">
+                        app:boxStrokeColor="@color/purple"
+                        tools:targetApi="p">
 
                         <EditText
                             android:text="@={viewmodel.nohp}"

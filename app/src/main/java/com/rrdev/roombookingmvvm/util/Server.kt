@@ -1,3 +1,3 @@
 package com.rrdev.roombookingmvvm.util
 
-val BASE = "https://727e3459a8fd.ngrok.io"
+val BASE = "https://1646-182-1-68-234.ngrok.io/RoomBooking/"

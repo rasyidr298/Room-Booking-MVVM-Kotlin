@@ -61,5 +61,4 @@ class ProfileRepository (
     ): ProfileResponse {
         return apiRequest { api.updateProfile(nimParams, nim,namaUser,nohp,password) }
     }
-
 }

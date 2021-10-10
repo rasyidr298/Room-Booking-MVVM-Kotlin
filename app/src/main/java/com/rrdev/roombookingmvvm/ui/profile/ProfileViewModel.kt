@@ -33,6 +33,7 @@ class ProfileViewModel(
                 val profileResponse = repository.updateProfile(nim!!,nim!!,nama!!,nohp!!,password!!)
                 profileResponse.profile.let {
                     profileListener?.onSucces("data nama "+it.namaUser+" sukses diubah")
+                    prefManager.spNama = it.namaUser
                     repository.saveProfile(it)
                     return@main
                 }

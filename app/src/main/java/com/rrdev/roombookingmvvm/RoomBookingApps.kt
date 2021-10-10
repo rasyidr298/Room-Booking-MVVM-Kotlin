@@ -10,18 +10,13 @@ import com.rrdev.roombookingmvvm.data.db.AppDatabase
 import com.rrdev.roombookingmvvm.data.network.MyApi
 import com.rrdev.roombookingmvvm.data.network.NetworkConnectionInterceptor
 import com.rrdev.roombookingmvvm.data.repositories.*
-import com.rrdev.roombookingmvvm.ui.auth.AuthViewModel
 import com.rrdev.roombookingmvvm.ui.auth.AuthViewModelFactory
-import com.rrdev.roombookingmvvm.ui.bookingRoom.BookingRoomViewModel
 import com.rrdev.roombookingmvvm.ui.bookingRoom.BookingRoomViewModelFactory
-import com.rrdev.roombookingmvvm.ui.detailRoom.DetailViewModel
 import com.rrdev.roombookingmvvm.ui.detailRoom.DetailViewModelFactory
-import com.rrdev.roombookingmvvm.ui.home.HomeViewModel
 import com.rrdev.roombookingmvvm.ui.home.HomeViewModelFactory
-import com.rrdev.roombookingmvvm.ui.mybooking.MyBookingViewModel
 import com.rrdev.roombookingmvvm.ui.mybooking.MyBookingViewModelFactory
-import com.rrdev.roombookingmvvm.ui.profile.ProfileViewModel
 import com.rrdev.roombookingmvvm.ui.profile.ProfileViewModelFactory
+import com.rrdev.roombookingmvvm.util.MyNotification
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -45,13 +40,6 @@ class RoomBookingApps : Application(), KodeinAware {
         bind() from singleton { RoomRepository(instance(), instance())  }
         bind() from singleton { ProfileRepository(instance(), instance())  }
 
-        bind() from singleton { AuthViewModel(instance()) }
-        bind() from singleton { BookingRoomViewModel(instance()) }
-        bind() from singleton { DetailViewModel(instance()) }
-        bind() from singleton { HomeViewModel(instance())  }
-        bind() from singleton { MyBookingViewModel(instance()) }
-        bind() from singleton { ProfileViewModel(instance()) }
-
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { BookingRoomViewModelFactory(instance()) }
         bind() from singleton { DetailViewModelFactory(instance()) }
@@ -64,12 +52,14 @@ class RoomBookingApps : Application(), KodeinAware {
         @get:Synchronized
         lateinit var instance: RoomBookingApps
         lateinit var prefManager: PrefManager
+        lateinit var myNotification: MyNotification
     }
 
     override fun onCreate() {
         getToken()
         instance = this
         prefManager = PrefManager(this)
+        myNotification = MyNotification(this)
         super.onCreate()
     }
 

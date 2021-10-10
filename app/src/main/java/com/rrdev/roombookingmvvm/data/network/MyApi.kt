@@ -10,15 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 interface MyApi {
+
     @FormUrlEncoded
-    @POST ("/Backend%20Room%20Booking/TableUsers/LoginUser.php")
+    @POST ("TableUsers/LoginUser.php")
      suspend fun userLogin(
         @Field("nim") nim: String,
         @Field("password") password: String
     ) : Response<AuthResponse>
 
     @FormUrlEncoded
-    @POST ("/Backend%20Room%20Booking/TableUsers/RegisterUser.php")
+    @POST ("TableUsers/RegisterUser.php")
     suspend fun userSignUp(
         @Field("nim") nim: String,
         @Field("namaUser") namaUser: String,
@@ -28,7 +29,7 @@ interface MyApi {
     ) : Response<AuthResponse>
 
     @FormUrlEncoded
-    @POST ("/Backend%20Room%20Booking/TableBookings/Booking.php")
+    @POST ("TableBookings/Booking.php")
     suspend fun bookigRoom(
         @Field("idBooking") idBooking: String,
         @Field("nimBooking") nimBooking: String,
@@ -40,27 +41,27 @@ interface MyApi {
         @Field("keterangan") keterangan: String
     ) : Response<BookingRoomResponse>
 
-    @GET("/Backend%20Room%20Booking/TableBookings/DeleteBooking.php")
+    @GET("TableBookings/DeleteBooking.php")
     suspend fun cancelBooking(
         @Query("idBooking") idBooking: String?
     ): Response<CancelBookingResponse>
 
-    @GET("/Backend%20Room%20Booking/TableRooms/GetAllRooms.php")
+    @GET("TableRooms/GetAllRooms.php")
     suspend fun getRoom(
     ):Response<RoomResponse>
 
-    @GET("/Backend%20Room%20Booking/TableBookings/GetBookingUser.php")
+    @GET("TableBookings/GetBookingUser.php")
     fun getMyBooking(
         @Query("nimBooking") nimBooking: String?
     ):Deferred<MyBookingResponse>
 
-    @GET("/Backend%20Room%20Booking/TableUsers/GetUser.php")
+    @GET("TableUsers/GetUser.php")
     suspend fun getProfile(
         @Query("nim") nim: String?
     ):Response<ProfileResponse>
 
     @FormUrlEncoded
-    @POST("/Backend%20Room%20Booking/TableUsers/UpdateUser.php")
+    @POST("TableUsers/UpdateUser.php")
     suspend fun updateProfile(
         @Query("nim") nimParams: String?,
         @Field("nim") nim: String?,
@@ -70,7 +71,7 @@ interface MyApi {
     ):Response<ProfileResponse>
 
     @FormUrlEncoded
-    @POST("/Backend%20Room%20Booking/TableUsers/UpdateToken.php")
+    @POST("TableUsers/UpdateToken.php")
     suspend fun updateToken(
         @Query("nim") nimParams: String?,
         @Field("token") token: String?,
